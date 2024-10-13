@@ -51,6 +51,16 @@ export default {
       type: Object,
     },
 
+/** The url to use for the thumbnail */
+    imageURL: {
+      default: "",
+      required: false,
+      type: String,
+    },
+
+    /** Does the app using this component have a stable connection */
+    isOnline: Boolean,
+
     /** Is the card shown or not */
     shown: Boolean,
   },
@@ -73,6 +83,10 @@ export default {
       //     {
       //       return "https://firebasestorage.googleapis.com/v0/b/votel-f1c47.appspot.com/o/cat-with-hammer.png?alt=media&token=e717e395-6406-4a57-83ac-b8c838427d91"
       //     }
+      if (this.isOnline)
+      {
+        return this.imageURL
+      }
       return "assets/imgs/cat-with-hammer.png"
     },
   },

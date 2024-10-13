@@ -169,7 +169,7 @@ export default {
       // Selected date cannot be out of bounds
       if (d < min || d > max)
       {
-        console.error("Illegal date selection")
+        console.error(`${this.$options.name}: Illegal date selection"`)
         return false
       }
 

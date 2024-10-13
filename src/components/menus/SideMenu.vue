@@ -7,7 +7,7 @@
   >
     <div
       class="sidebar-header"
-      @click="toggleCollapsed"
+      @click.prevent="toggleCollapsed"
     >
       <font-awesome-icon
         v-if="isCollapsed"
@@ -25,7 +25,7 @@
       >
         <a
           :href="content.href"
-          @click="toggleCollapsed"
+          @click.prevent="toggleCollapsed"
         >
           {{ content.formatted }}
         </a>

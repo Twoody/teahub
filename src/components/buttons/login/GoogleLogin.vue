@@ -62,16 +62,22 @@ export default {
         const response = await signInWithPopup(auth, provider)
         // This gives you a Google Access Token.
         const credential = GoogleAuthProvider.credentialFromResult(response)
-        const token = credential.accessToken
-        // The signed-in user info.
-        const user = response.user
+        if (credential)
+        {
+          const token = credential.accessToken
+          // The signed-in user info.
+          const user = response?.user
 
-        // Update store
-        this.$store.dispatch("fetchUser", user)
+          if (user)
+          {
+            // Update store
+            this.$store.dispatch("fetchUser", user)
 
-        this.$router.push({
-          path: "/",
-        })
+            this.$router.push({
+              path: "/",
+            })
+          }
+        }
       }
       catch (error)
       {

@@ -41,4 +41,3 @@ Default.args = {
   category: "Category",
   content: "Content",
 };
-

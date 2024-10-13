@@ -37,4 +37,3 @@ Default.args = {
     { id: 3, href: "#section3", formatted: "Section 3" },
   ],
 };
-

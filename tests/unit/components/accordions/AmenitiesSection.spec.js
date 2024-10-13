@@ -3,7 +3,7 @@ import AmenitiesSection from "@/components/accordions/AmenitiesSection.vue"
 import Accordion from "@/components/accordions/Accordion.vue"
 import FlexTable from "@/components/common/FlexTable.vue"
 
-const createWrapper = (propsData) => 
+const createWrapper = (propsData) =>
 {
   return mount(AmenitiesSection, {
     propsData,
@@ -22,48 +22,48 @@ const createWrapper = (propsData) =>
   })
 }
 
-describe("AmenitiesSection.vue", () => 
+describe("AmenitiesSection.vue", () =>
 {
-  test("renders title slot correctly", () => 
+  test("renders title slot correctly", () =>
   {
     const wrapper = createWrapper({
-      amenities: [], 
+      amenities: [],
     })
     expect(wrapper.text()).toContain("Amenities")
   })
 
-  test("renders Accordion components for each amenity", () => 
+  test("renders Accordion components for each amenity", () =>
   {
     const amenities = [
       {
         id: 1,
-        title: "Washer", 
+        title: "Washer",
       },
       {
         id: 2,
-        title: "Dryer", 
+        title: "Dryer",
       },
     ]
     const wrapper = createWrapper({
-      amenities, 
+      amenities,
     })
 
     // Add one for the top level accordion
     expect(wrapper.findAllComponents(Accordion)).toHaveLength(amenities.length + 1)
   })
 
-  test("formatTitle properly formats detail title", () => 
+  test("formatTitle properly formats detail title", () =>
   {
     const wrapper = createWrapper({
-      amenities: [], 
+      amenities: [],
     })
     expect(wrapper.vm.formatTitle("test_title")).toBe("Test title")
   })
 
-  test("getDetails returns correct details excluding predefined fields", () => 
+  test("getDetails returns correct details excluding predefined fields", () =>
   {
     const wrapper = createWrapper({
-      amenities: [], 
+      amenities: [],
     })
     const amenity = {
       id: 1,
@@ -78,16 +78,16 @@ describe("AmenitiesSection.vue", () =>
     ])
   })
 
-  test("sortedAmenities returns empty array if no amenities provied", () => 
+  test("sortedAmenities returns empty array if no amenities provied", () =>
   {
-    const amenities = null
+    const amenities = []
     const wrapper = createWrapper({
-      amenities, 
+      amenities,
     })
     expect(wrapper.vm.sortedAmenities).toEqual([])
   })
-	
-  test("sortedAmenities sorts amenities even when title not found", async () => 
+
+  test("sortedAmenities sorts amenities even when title not found", async () =>
   {
     const amenities = [
       {
@@ -95,14 +95,14 @@ describe("AmenitiesSection.vue", () =>
       },
       {
         id: 1,
-        title: "Dryer", 
+        title: "Dryer",
       },
       {
         id: 3,
       },
     ]
     const wrapper = createWrapper({
-      amenities, 
+      amenities,
     })
 
     await wrapper.vm.$nextTick()
@@ -115,35 +115,35 @@ describe("AmenitiesSection.vue", () =>
       },
       {
         id: 1,
-        title: "Dryer", 
+        title: "Dryer",
       },
     ])
   })
-  test("sortedAmenities sorts amenities by title", async () => 
+  test("sortedAmenities sorts amenities by title", async () =>
   {
     const amenities = [
       {
         id: 2,
-        title: "Washer", 
+        title: "Washer",
       },
       {
         id: 1,
-        title: "Dryer", 
+        title: "Dryer",
       },
     ]
     const wrapper = createWrapper({
-      amenities, 
+      amenities,
     })
 
     await wrapper.vm.$nextTick()
     expect(wrapper.vm.sortedAmenities).toEqual([
       {
         id: 1,
-        title: "Dryer", 
+        title: "Dryer",
       },
       {
         id: 2,
-        title: "Washer", 
+        title: "Washer",
       },
     ])
   })

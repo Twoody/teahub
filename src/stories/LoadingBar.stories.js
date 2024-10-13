@@ -45,4 +45,3 @@ Tall.args = {
   size: "medium",
   tall: true,
 };
-

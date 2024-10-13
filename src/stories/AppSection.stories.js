@@ -44,4 +44,3 @@ Default.args = {
   isShowing: true,
   styles: "",
 };
-

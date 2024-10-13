@@ -46,4 +46,3 @@ WithError.args = {
   error: "Error message",
   defaultSlotContent: "Some content",
 };
-

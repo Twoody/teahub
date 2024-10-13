@@ -48,4 +48,3 @@ Default.args = {
     },
   ],
 };
-

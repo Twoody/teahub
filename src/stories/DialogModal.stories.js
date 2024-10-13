@@ -45,4 +45,3 @@ Default.args = {
 };
 
 // Add more story variations if necessary
-

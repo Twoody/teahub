@@ -1,7 +1,7 @@
 import { mount } from "@vue/test-utils"
 import SideMenu from "@/components/menus/SideMenu.vue"
 
-const createWrapper = (props) => 
+const createWrapper = (props) =>
 {
   return mount(
     SideMenu,
@@ -16,35 +16,35 @@ const createWrapper = (props) =>
   )
 }
 
-describe("SideMenu", () => 
+describe("SideMenu", () =>
 {
   const contents = [
     {
       id: 1,
       href: "/example1",
-      formatted: "Example 1", 
+      formatted: "Example 1",
     },
     {
       id: 2,
       href: "/example2",
-      formatted: "Example 2", 
+      formatted: "Example 2",
     },
   ]
 
-  it("renders sidebar and contents", () => 
+  it("renders sidebar and contents", () =>
   {
     const wrapper = createWrapper({
-      contents, 
+      contents,
     })
 
     expect(wrapper.find(".sidebar").exists()).toBe(true)
     expect(wrapper.findAll(".sidebar-nav li").length).toBe(contents.length)
   })
 
-  it("toggles isCollapsed when the sidebar-header is clicked", async () => 
+  it("toggles isCollapsed when the sidebar-header is clicked", async () =>
   {
     const wrapper = createWrapper({
-      contents, 
+      contents,
     })
 
     expect(wrapper.vm.isCollapsed).toBe(true)
@@ -56,10 +56,10 @@ describe("SideMenu", () =>
     expect(wrapper.vm.isCollapsed).toBe(true)
   })
 
-  it("toggles isCollapsed when a content link is clicked", async () => 
+  it("toggles isCollapsed when a content link is clicked", async () =>
   {
     const wrapper = createWrapper({
-      contents, 
+      contents,
     })
 
     expect(wrapper.vm.isCollapsed).toBe(true)

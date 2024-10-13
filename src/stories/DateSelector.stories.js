@@ -51,4 +51,3 @@ Loading.args = {
   minDate: "2023-01-01",
   value: "2023-05-04",
 };
-

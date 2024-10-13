@@ -1,5 +1,5 @@
 import QuestionAccordion from "@/components/accordions/QuestionAccordion.vue";
-import "@/assets/styles/styles.less"
+import "@/assets/styles/styles.less";
 
 export default {
   title: "Components/Accordions/QuestionAccordion",
@@ -27,4 +27,3 @@ const Template = (args) => ({
 
 export const Default = Template.bind({});
 Default.args = {};
-

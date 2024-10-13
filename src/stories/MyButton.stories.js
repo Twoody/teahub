@@ -1,5 +1,5 @@
 import MyButton from "@/components/buttons/MyButton.vue";
-import "@/assets/styles/styles.less"
+import "@/assets/styles/styles.less";
 
 export default {
   title: "Components/Buttons/MyButton",
@@ -21,7 +21,8 @@ const Template = (args) => ({
   setup() {
     return { args };
   },
-  template: '<my-button v-bind="args"><template #default>My Button</template></my-button>',
+  template:
+    '<my-button v-bind="args"><template #default>My Button</template></my-button>',
 });
 
 export const Default = Template.bind({});
@@ -44,4 +45,3 @@ Submit.args = { submit: true };
 
 export const Success = Template.bind({});
 Success.args = { success: true };
-

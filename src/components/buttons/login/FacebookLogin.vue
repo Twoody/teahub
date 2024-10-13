@@ -65,17 +65,22 @@ export default {
 
         const response = await signInWithPopup(auth, provider)
         // The signed-in user info.
-        const user = response.user
-        // This gives you a Facebook Access Token.
-        const credential = FacebookAuthProvider.credentialFromResult(response)
-        const token = credential.accessToken
+        const user = response?.user
 
-        // Update store
-        this.$store.dispatch("fetchUser", user)
+        if (user)
+        {
+          // This gives you a Facebook Access Token.
+          const credential = FacebookAuthProvider.credentialFromResult(response)
+          const token = credential.accessToken
 
-        this.$router.push({
-          path: "/",
-        })
+          // Update store
+          this.$store.dispatch("fetchUser", user)
+
+          this.$router.push({
+            path: "/",
+          })
+              
+        }
       }
       catch (error)
       {

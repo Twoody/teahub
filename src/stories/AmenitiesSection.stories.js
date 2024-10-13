@@ -1,5 +1,5 @@
 import AmenitiesSection from "@/components/accordions/AmenitiesSection.vue";
-import "@/assets/styles/styles.less"
+import "@/assets/styles/styles.less";
 
 export default {
   title: "Components/Accordions/AmenitiesSection",
@@ -7,7 +7,8 @@ export default {
   argTypes: {
     amenities: {
       control: "array",
-      description: "Different kind of amenities; E.g. washer, dryer, tea kettle",
+      description:
+        "Different kind of amenities; E.g. washer, dryer, tea kettle",
     },
   },
   tags: ["autodocs"],
@@ -48,4 +49,3 @@ export const Default = Template.bind({});
 Default.args = {
   amenities: sampleAmenities,
 };
-

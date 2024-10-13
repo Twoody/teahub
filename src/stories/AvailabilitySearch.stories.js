@@ -1,5 +1,5 @@
 import AvailabilitySearch from "@/components/forms/AvailabilitySearch.vue";
-import "@/assets/styles/styles.less"
+import "@/assets/styles/styles.less";
 
 export default {
   title: "Components/Forms/AvailabilitySearch",
@@ -20,4 +20,3 @@ const Template = (args) => ({
 
 export const Default = Template.bind({});
 Default.args = {};
-

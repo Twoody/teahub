@@ -1,5 +1,5 @@
 import Accordion from "@/components/accordions/Accordion.vue";
-import "@/assets/styles/styles.less"
+import "@/assets/styles/styles.less";
 
 export default {
   title: "Components/Accordions/Accordion",
@@ -43,4 +43,3 @@ export const WithNested = Template.bind({});
 WithNested.args = {
   hasNested: true,
 };
-

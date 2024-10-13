@@ -31,4 +31,3 @@ Default.args = {
     4: "Filter 4",
   },
 };
-

@@ -33,4 +33,3 @@ export const Inactive = Template.bind({});
 Inactive.args = {
   inactive: true,
 };
-

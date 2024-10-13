@@ -53,4 +53,3 @@ WithPrice.args = {
   isLoading: false,
   totalPrice: "100",
 };
-
