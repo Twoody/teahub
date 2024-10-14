@@ -3,8 +3,8 @@
     Copyright
     <font-awesome-icon
       data-testid="teahub-copyright"
-      icon="fa fa-copyright"
-    />&nbsp;
+      :icon="['fa', 'copyright']"
+    />
     {{ formattedYear }}
     Tanner Woody All Rights Reserved
   </div>

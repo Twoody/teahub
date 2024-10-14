@@ -51,7 +51,7 @@ export default {
       type: Object,
     },
 
-/** The url to use for the thumbnail */
+    /** The url to use for the thumbnail */
     imageURL: {
       default: "",
       required: false,
