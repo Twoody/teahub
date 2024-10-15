@@ -1,6 +1,6 @@
 {
   "name": "teahub",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Vue front end applications and components",
   "type": "module",
   "files": [
@@ -36,7 +36,7 @@
     "less-loader": "^7.2.1",
     "luxon": "^2.4.0",
     "vue": "^3.2.47",
-    "vue-cal": "^4.2.0"
+    "vue-cal": "^4.10.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.3.5",

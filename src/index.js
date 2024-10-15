@@ -29,32 +29,39 @@ import DialogModal from "components/modals/DialogModal.vue"
 export default {
   install: (app) => 
   {
+    const components = [
     // app.component("FacebookLogin", FacebookLogin)
     // app.component("GoogleLogin", GoogleLogin)
     // app.component("NewUserLogin", NewUserLogin)
     // app.component("SocialLogin", SocialLogin)
-    app.component("Accordion", Accordion)
-    app.component("AmenitiesSection", AmenitiesSection)
-    app.component("QuestionAccordion", QuestionAccordion)
-    app.component("Endorsement", Endorsement)
-    app.component("Endorsements", Endorsements)
-    app.component("MyButton", MyButton)
-    app.component("ChipFilters", ChipFilters)
-    app.component("Filters", Filters)
-    app.component("MyFilter", MyFilter)
-    app.component("BookButton", BookButton)
-    app.component("MapCard", MapCard)
-    app.component("AppSection", AppSection)
-    app.component("Copyright", Copyright)
-    app.component("FlexTable", FlexTable)
-    app.component("Validatable", Validatable)
-    app.component("LoadingBar", LoadingBar)
-    app.component("Spinner", Spinner)
-    app.component("AvailabilitySearch", AvailabilitySearch)
-    app.component("AvailabilitySearchBar", AvailabilitySearchBar)
-    app.component("DateSelector", DateSelector)
-    app.component("MyDate", MyDate)
-    app.component("SideMenu", SideMenu)
-    app.component("DialogModal", DialogModal)
+      Accordion,
+      AmenitiesSection,
+      QuestionAccordion,
+      Endorsement,
+      Endorsements,
+      MyButton,
+      ChipFilters,
+      Filters,
+      MyFilter,
+      BookButton,
+      MapCard,
+      AppSection,
+      Copyright,
+      FlexTable,
+      Validatable,
+      LoadingBar,
+      Spinner,
+      AvailabilitySearch,
+      AvailabilitySearchBar,
+      DateSelector,
+      MyDate,
+      SideMenu,
+      DialogModal,
+    ]
+    components.forEach((component) => 
+    {
+      app.component(component.name, component)
+    })
+
   },
 }
