@@ -52,6 +52,9 @@ export default
     /** Content to show in a badge */
     badgeContent: String,
 
+    /** */
+    clickStop: Boolean,
+
     /** Is button disabled */
     disabled: Boolean,
 
@@ -92,6 +95,7 @@ export default
   computed:
   {
     /**
+     * @returns {string} - The "type" propperty of the HTML button
      */
     buttonType ()
     {
@@ -147,7 +151,7 @@ export default
     // The user wants to click the button. Propogate event if button is not disabled.
     onClick (ev)
     {
-      if (ev?.preventDefault) 
+      if (ev?.preventDefault && this.clickStop) 
       {
         ev.preventDefault()
       }
