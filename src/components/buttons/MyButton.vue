@@ -2,7 +2,7 @@
   <button
     class="my-button-wrapper"
     :class="classes"
-    :type="submit ? 'submit' : 'button'"
+    :type="buttonType"
     @animationend="onShakeEnd"
     @click.stop="onClick($event)"
   >
@@ -67,7 +67,10 @@ export default
     /** Whether is a smaller pill button or not */
     pill: Boolean,
 
-    /** Is button for submitting */
+    /** Is button for resetting form data */
+    reset: Boolean,
+
+    /** Is button for submitting form data */
     submit: Boolean,
 
     /** Is button showing success */
@@ -88,6 +91,21 @@ export default
   },
   computed:
   {
+    /**
+     */
+    buttonType ()
+    {
+      if (this.submit)
+      {
+        return "submit"
+      }
+      else if (this.reset)
+      {
+        return "reset"
+      }
+      return "button"
+    },
+
     /**
      * @returns {object} classes -- Object of applied css classes and rules
      */
