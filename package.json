@@ -1,6 +1,6 @@
 {
   "name": "teahub",
-  "version": "0.0.10",
+  "version": "0.0.11-beta",
   "description": "Vue front end applications and components",
   "type": "module",
   "files": [

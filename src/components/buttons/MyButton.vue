@@ -153,8 +153,10 @@ export default
     {
       if (ev?.preventDefault && this.clickStop) 
       {
+			console.log('teahub: should not happen')
         ev.preventDefault()
       }
+
       if (this.doingWork) 
       {
         return
