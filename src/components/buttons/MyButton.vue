@@ -4,7 +4,7 @@
     :class="classes"
     :type="buttonType"
     @animationend="onShakeEnd"
-    @click.stop="onClick($event)"
+    @click="onClick($event)"
   >
     <div
       v-if="badgeContent"
@@ -153,7 +153,6 @@ export default
     {
       if (ev?.preventDefault && this.clickStop) 
       {
-			console.log('teahub: should not happen')
         ev.preventDefault()
       }
 
