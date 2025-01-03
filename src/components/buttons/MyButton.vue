@@ -2,9 +2,9 @@
   <button
     class="my-button-wrapper"
     :class="classes"
-    :type="submit ? 'submit' : 'button'"
+    :type="buttonType"
     @animationend="onShakeEnd"
-    @click.stop="onClick($event)"
+    @click="onClick($event)"
   >
     <div
       v-if="badgeContent"
@@ -52,6 +52,9 @@ export default
     /** Content to show in a badge */
     badgeContent: String,
 
+    /** */
+    clickStop: Boolean,
+
     /** Is button disabled */
     disabled: Boolean,
 
@@ -67,7 +70,10 @@ export default
     /** Whether is a smaller pill button or not */
     pill: Boolean,
 
-    /** Is button for submitting */
+    /** Is button for resetting form data */
+    reset: Boolean,
+
+    /** Is button for submitting form data */
     submit: Boolean,
 
     /** Is button showing success */
@@ -88,6 +94,22 @@ export default
   },
   computed:
   {
+    /**
+     * @returns {string} - The "type" propperty of the HTML button
+     */
+    buttonType ()
+    {
+      if (this.submit)
+      {
+        return "submit"
+      }
+      else if (this.reset)
+      {
+        return "reset"
+      }
+      return "button"
+    },
+
     /**
      * @returns {object} classes -- Object of applied css classes and rules
      */
@@ -129,10 +151,11 @@ export default
     // The user wants to click the button. Propogate event if button is not disabled.
     onClick (ev)
     {
-      if (ev?.preventDefault) 
+      if (ev?.preventDefault && this.clickStop) 
       {
         ev.preventDefault()
       }
+
       if (this.doingWork) 
       {
         return
