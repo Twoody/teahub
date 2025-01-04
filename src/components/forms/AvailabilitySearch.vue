@@ -59,7 +59,10 @@ export default {
       dailyRate: 85,
       hasError: false,
       isLoading: false,
-      maxDate: "2027-01-01",
+      // maxDate is computed to the current date + 1 year
+      maxDate: DateTime.now().plus({
+        years: 1, 
+      }).toISODate(),
       searchQuery: "",
       selectedDates: [
         {
