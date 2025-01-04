@@ -10,7 +10,7 @@
       ref="myDate"
       type="tel"
       @input="updateParent()"
-      @keypress="isNumber($event)"
+      @keypress="isNumber($event) || isDelete($event)"
     >
     <LoadingBar
       v-else
@@ -58,6 +58,7 @@ export default {
       {
         return false
       }
+
       let num = parseInt(this.localValue)
       if (!num || num !== parseInt(this.localValue)) 
       {
@@ -72,7 +73,7 @@ export default {
         }
         return true
       }
-      if (this.isMonth)
+      else if (this.isMonth)
       {
         if (this.localValue === 0 || this.localValue > 12)
         {
@@ -80,7 +81,7 @@ export default {
         }
         return true
       }
-      if (this.isYear)
+      else if (this.isYear)
       {
         // TODO: Allocate to this DateTime
         if (this.localValue === 0 || this.localValue < 2023)
@@ -120,16 +121,34 @@ export default {
   },
   methods:
   {
+    /**
+     * @param evt
+     * @since 0.1.0
+     */
+    isDelete (evt)
+    {
+      /* c8 ignore next 3 */
+      evt = (evt) ? evt : window.event
+      var charCode = (evt.which) ? evt.which : evt.keyCode
+      const DELETE = 127
+      if (charCode === DELETE)
+      {
+        return true
+      }
+      evt.preventDefault()
+      return false
+    },
+
     isNumber (evt)
     {
       /* c8 ignore next 3 */
       evt = (evt) ? evt : window.event
-      evt.preventDefault()
       var charCode = (evt.which) ? evt.which : evt.keyCode
 
       if ((charCode > 31 && (charCode < 48 || charCode > 57)) &&
         charCode !== 46)
       {
+        evt.preventDefault()
         return false
       }
       else
@@ -138,12 +157,13 @@ export default {
       }
     },
 
-    /** */
+	  /** @return {void} Update parent component of date changes */
     updateParent ()
     {
+      const toEmit = this.isValid ? this.localValue : ""
       this.$emit(
         "newValue",
-        this.isValid ? this.localValue : ""
+        toEmit 
       )
     },
   },

@@ -10,8 +10,8 @@
           :end="selectedDates[0].end"
           :isLoading="isLoading"
           :start="selectedDates[0].start"
-          @updateEndDate="selectedDates[0].end = $event"
-          @updateStartDate="selectedDates[0].start = $event"
+          @updateEndDate="handleUpdateDateEnd($event)"
+          @updateStartDate="handleUpdateDateStart($event)"
         />
         <VueCal
           active-view="month"
@@ -139,6 +139,16 @@ export default {
       {
         await this.processBookingRequeset()
       }
+    },
+
+    handleUpdateDateEnd (ev)
+    {
+      this.selectedDates[0].end = ev
+    },
+
+    handleUpdateDateStart (ev)
+    {
+      this.selectedDates[0].start = ev
     },
 
     async processBookingRequeset () 
