@@ -28,7 +28,7 @@
     </div>
     <button
       class="map-card-button"
-      @click="gotoItem(activity.id)"
+		@click="this.$emit('click')"
     >
       View Details
     </button>
@@ -79,31 +79,11 @@ export default {
     // TODO: Setup as a prop
     url ()
     {
-      //     if (this.$store.state.isOnline)
-      //     {
-      //       return "https://firebasestorage.googleapis.com/v0/b/votel-f1c47.appspot.com/o/cat-with-hammer.png?alt=media&token=e717e395-6406-4a57-83ac-b8c838427d91"
-      //     }
       if (this.isOnline)
       {
         return this.imageURL
       }
       return "assets/imgs/cat-with-hammer.png"
-    },
-  },
-  methods: {
-    /**
-     * @todo Setup to do an emit instead
-     * @param {string} id - Poorly names object s.t. id is string and not int
-     */
-    gotoItem (id) 
-    {
-      //     this.$router.push({
-      //       name: "mapItem", 
-      //       params: {
-      //         id, 
-      //       },
-      //     })
-      console.info(id)
     },
   },
 }
