@@ -6,6 +6,7 @@
         :class="{'is-loading': isLoading}"
       >
         <AvailabilitySearchBar
+          v-if="!hideDateBar"
           class="inputs-container"
           :end="selectedDates[0].end"
           :isLoading="isLoading"
@@ -73,7 +74,9 @@ export default {
     }
   },
   props:
-  {},
+  {
+    hideDateBar: Boolean,
+  },
   computed: 
   {
     /** @returns {boolean} - Can the booking button be clicked */

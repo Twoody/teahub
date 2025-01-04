@@ -157,7 +157,7 @@ export default {
       }
     },
 
-	  /** @return {void} Update parent component of date changes */
+    /** @returns {void} Update parent component of date changes */
     updateParent ()
     {
       const toEmit = this.isValid ? this.localValue : ""
