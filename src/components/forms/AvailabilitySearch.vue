@@ -59,7 +59,7 @@ export default {
       dailyRate: 85,
       hasError: false,
       isLoading: false,
-      maxDate: "2025-01-01",
+      maxDate: "2027-01-01",
       searchQuery: "",
       selectedDates: [
         {
@@ -169,7 +169,14 @@ export default {
       // Selected date cannot be out of bounds
       if (d < min || d > max)
       {
-        console.error(`${this.$options.name}: Illegal date selection"`)
+        if (d < min) 
+        {
+          console.error(`${this.$options.name}: min date '${min}' has illegal selection of ${d}`)
+        }
+        else if (d > max) 
+        {
+          console.error(`${this.$options.name}: max date '${max}' has illegal selection of ${d}`)
+        }
         return false
       }
 

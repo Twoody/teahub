@@ -28,7 +28,7 @@
     </div>
     <button
       class="map-card-button"
-		@click="this.$emit('click')"
+      @click="$emit('click')"
     >
       View Details
     </button>

@@ -2,10 +2,10 @@ The best loading spinner
 <template>
   <div class="loading-spinner">
     <font-awesome-icon
-		 icon="spinner"
-		 spin
-       :class="classes"
-	 />
+      icon="spinner"
+      spin
+      :class="classes"
+    />
   </div>
 </template>
 
@@ -29,7 +29,9 @@ export default {
      */
     classes ()
     {
-      let classArray = ['spinner-svg']
+      let classArray = [
+        "spinner-svg",
+      ]
       classArray.push(this.sizeClass)
       return classArray
     },
@@ -68,20 +70,20 @@ export default {
     position: relative;
     overflow: hidden;
 
-	 .spinner-svg {
-		 height: 100%;
-		 &.spinner-sm {
-			width: 16px;
-		 }
-		 &.spinner-md {
-			width: 32;
-		 }
-		 &.spinner-lg {
-			width: 64px;
-		 }
-		 &.spinner-xl {
-			width: 128px;
-		 }
-	 }
+   .spinner-svg {
+     height: 100%;
+     &.spinner-sm {
+      width: 16px;
+     }
+     &.spinner-md {
+      width: 32;
+     }
+     &.spinner-lg {
+      width: 64px;
+     }
+     &.spinner-xl {
+      width: 128px;
+     }
+   }
   }
 </style>
