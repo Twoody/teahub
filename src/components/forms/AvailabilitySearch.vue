@@ -166,7 +166,7 @@ export default {
       this.hasLocalError = false
       try
       {
-        this.$emit("availability-search", {
+        this.$emit("booking-request", {
           endDate: this.selectedDates[0].end,
           startDate: this.selectedDates[0].start,
         })
