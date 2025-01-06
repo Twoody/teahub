@@ -15,7 +15,7 @@
           <!-- /* c8 ignore next 7 */ -->
           <DateSelector
             data-testid="date-selector-start"
-            :isLoading="isLoading"
+            :isLoading="isLoading || isProcessing"
             :maxDate="maxDate"
             :minDate="today"
             :value="start"
@@ -32,7 +32,7 @@
           <!-- /* c8 ignore next 7 */ -->
           <DateSelector
             data-testid="date-selector-end"
-            :isLoading="isLoading"
+            :isLoading="isLoading || isProcessing"
             :maxDate="maxDate"
             :minDate="minDateEnd"
             :value="end"
@@ -70,6 +70,9 @@ export default {
 
     /** Whether we are in loading state or not */
     isLoading: Boolean,
+
+    /** Whether we are in loading state or not */
+    isProcessing: Boolean,
 
     /** Selected start date for the calendar */
     start:

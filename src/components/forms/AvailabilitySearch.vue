@@ -3,13 +3,14 @@
     <div class="content-section">
       <form
         class="search-box"
-        :class="{'is-loading': isLoading}"
+        :class="{'is-loading': isLoading, 'is-processing': isProcessing}"
       >
         <AvailabilitySearchBar
           v-if="!hideDateBar"
           class="inputs-container"
           :end="selectedDates[0].end"
           :isLoading="isLoading"
+          :isProcessing="isProcessing"
           :start="selectedDates[0].start"
           @updateEndDate="handleUpdateDateEnd($event)"
           @updateStartDate="handleUpdateDateStart($event)"
@@ -28,8 +29,9 @@
         <BookButton
           :disabled="!isBookingEnabled"
           :isLoading="isLoading"
+          :isProcessing="isProcessing"
           :totalPrice="totalPrice"
-          @click="handleAvailabilitySearch()"
+          @click="handleBookButton()"
         />
       </form>
     </div>
@@ -58,8 +60,7 @@ export default {
     return {
       cleaningFee: 100,
       dailyRate: 85,
-      hasError: false,
-      isLoading: false,
+      hasLocalError: false,
       // maxDate is computed to the current date + 1 year
       maxDate: DateTime.now().plus({
         years: 1, 
@@ -75,7 +76,14 @@ export default {
   },
   props:
   {
+    /** Whether accessibility bar for date selection is available */
     hideDateBar: Boolean,
+
+    /** Is the application currently in a processing state */
+    isLoading: Boolean,
+
+    /** Is the application currently in a /processing state */
+    isProcessing: Boolean,
   },
   computed: 
   {
@@ -129,14 +137,13 @@ export default {
   {
     /**
      * @todo docblock
-     * @todo acutally send this request to firebase 
      */
-    async handleAvailabilitySearch ()
+    async handleBookButton ()
     {
       if (!this.isBookingEnabled) 
       {
         // Do nothing and tell user why "nothing"
-        this.hasError = true
+        this.hasLocalError = true
       }
       else 
       {
@@ -154,21 +161,21 @@ export default {
       this.selectedDates[0].start = ev
     },
 
-    async processBookingRequeset () 
+    processBookingRequeset () 
     {
-      this.hasError = false
-      this.isLoading = true
+      this.hasLocalError = false
       try
       {
-        // sleep for .5 seconds for faux https mgmt
-        await new Promise((r) => setTimeout(r, 2000))
+        this.$emit("availability-search", {
+          endDate: this.selectedDates[0].end,
+          startDate: this.selectedDates[0].start,
+        })
+
       }
-      /* c8 ignore next 4 */
       catch (error)
       {
-        this.hasError = true
+        this.hasLocalError = true
       }
-      this.isLoading = false
     },
 
     /**
@@ -177,6 +184,10 @@ export default {
      */
     processDateSelection (selected)
     {
+      if (this.isLoading || this.isProcessing)
+      {
+        return false
+      }
       let d = DateTime.fromJSDate(new Date(selected))
       let start = DateTime.fromISO(this.selectedDates[0].start)
       let min = DateTime.fromISO(this.minDate)
