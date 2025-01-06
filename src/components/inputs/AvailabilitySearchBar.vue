@@ -71,7 +71,7 @@ export default {
     /** Whether we are in loading state or not */
     isLoading: Boolean,
 
-    /** Whether we are in loading state or not */
+    /** Whether we are in processing state or not */
     isProcessing: Boolean,
 
     /** Selected start date for the calendar */

@@ -10,9 +10,9 @@ Button to book a stay
       mode="out-in"
     >
       <span
-        v-if="isLoading"
+        v-if="isLoading || isProcessing"
         class="execute-text execute-loading"
-        key="loading"
+        key="process-running"
       >
         {{ bookingText }}
       </span>
@@ -44,6 +44,9 @@ export default {
     /** Whether we are in loading state or not */
     isLoading: Boolean,
 
+    /** Whether we are in processing state or not */
+    isProcessing: Boolean,
+
     /** The total price of the booked stay */
     totalPrice: {
       default: "",
@@ -57,6 +60,10 @@ export default {
       if (this.isLoading) 
       {
         return "Loading"
+      }
+      else if (this.isProcessing) 
+      {
+        return "Processing Request"
       }
       if (!this.totalPrice) 
       {
