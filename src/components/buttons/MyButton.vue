@@ -142,13 +142,16 @@ export default
   },
   methods:
   {
-    // Begin the shaking animaion
+    /** @returns {void}  Begin the shaking animaion */
     beginShake ()
     {
       this.shaking = true
     },
 
-    // The user wants to click the button. Propogate event if button is not disabled.
+    /**
+     * @param ev
+     * @returns {void} The user wants to click the button. Propogate event if button is not disabled.
+     */
     onClick (ev)
     {
       if (ev?.preventDefault && this.clickStop) 
@@ -175,7 +178,7 @@ export default
       }
     },
 
-    // Reset the shake class so the button can shake again
+    /** @returns {void}  Reset the shake class so the button can shake again */
     onShakeEnd ()
     {
       this.shaking = false
