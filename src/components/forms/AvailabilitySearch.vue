@@ -31,7 +31,7 @@
           :isLoading="isLoading"
           :isProcessing="isProcessing"
           :totalPrice="totalPrice"
-          @click="handleBookButton()"
+          @click="handleBookButton"
         />
       </form>
     </div>
