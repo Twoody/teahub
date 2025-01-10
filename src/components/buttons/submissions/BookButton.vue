@@ -3,7 +3,6 @@ Button to book a stay
   <MyButton
     class="search-execute"
     :disabled="disabled"
-    @click="$emit('click')"
   >
     <transition
       name="fade"
