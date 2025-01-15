@@ -4,7 +4,7 @@ import {Settings} from "luxon"
 import AvailabilitySearch from "@/components/forms/AvailabilitySearch.vue"
 
 /**
- * NOTE: vuecal dates in form of "2023-05-10T08:00:00.000Z"
+ * NOTE: vuecal dates in form of "2026-05-10T08:00:00.000Z"
  */
 
 /**
@@ -32,7 +32,7 @@ describe("AvailabilitySearch Component", () =>
   beforeEach(() =>
   {
     // Preset the date for all tests
-    let now = DateTime.local(2023, 4, 26)
+    let now = DateTime.local(2026, 4, 26)
     let rezoned = now.setZone("America/Los_Angeles").toMillis()
     Settings.now = () => rezoned
     Settings.defaultZoneName = "America/Los_Angeles"
@@ -49,7 +49,7 @@ describe("AvailabilitySearch Component", () =>
 
   it.concurrent("Shows loading section", async () => 
   {
-    wrapper.setData({
+    wrapper.setProps({
       isLoading: true, 
     })
     await wrapper.vm.$nextTick()
@@ -90,13 +90,13 @@ describe("AvailabilitySearch Component", () =>
 
   it.concurrent("displays the correct minDate", () => 
   {
-    expect(wrapper.vm.minDate).toBe("2023-04-26")
+    expect(wrapper.vm.minDate).toBe("2026-04-26")
   })
 
   it.concurrent("calculates the correct totalDays", async () => 
   {
-    const startDate = "2023-05-01"
-    const endDate = "2023-05-05"
+    const startDate = "2026-05-01"
+    const endDate = "2026-05-05"
 
     await wrapper.setData({
       selectedDates: [
@@ -112,8 +112,8 @@ describe("AvailabilitySearch Component", () =>
 
   it.concurrent("calculates the correct totalPrice", async () => 
   {
-    const startDate = "2023-05-01"
-    const endDate = "2023-05-05"
+    const startDate = "2026-05-01"
+    const endDate = "2026-05-05"
     const dailyRate = 85
     const cleaningFee = 100
     const expectedTotalPrice = ((5 * dailyRate) + cleaningFee) + ""
@@ -134,8 +134,8 @@ describe("AvailabilitySearch Component", () =>
   {
     let isolatedWrapper = createWrapper()
    
-    const selectedDate = "2023-05-10T08:00:00.000Z"
-    const expectedStartDate = "2023-05-10"
+    const selectedDate = "2026-05-10T08:00:00.000Z"
+    const expectedStartDate = "2026-05-10"
 
     expect(isolatedWrapper.vm.processDateSelection(selectedDate)).toBe(true)
     expect(isolatedWrapper.vm.selectedDates[0].start).toBe(expectedStartDate)
@@ -144,10 +144,10 @@ describe("AvailabilitySearch Component", () =>
   it.concurrent("informs if date is invalid", () => 
   {
     let isolatedWrapper = createWrapper()
-    expect(wrapper.vm.minDate).toBe("2023-04-26")
+    expect(wrapper.vm.minDate).toBe("2026-04-26")
    
-    const selectedDate = "2023-05-10T08:00:00.000Z"
-    const expectedStartDate = "2023-05-10"
+    const selectedDate = "2026-05-10T08:00:00.000Z"
+    const expectedStartDate = "2026-05-10"
 
     expect(isolatedWrapper.vm.processDateSelection(selectedDate)).toBe(true)
     expect(isolatedWrapper.vm.selectedDates[0].start).toBe(expectedStartDate)
@@ -180,12 +180,12 @@ describe("AvailabilitySearch Component", () =>
 
     expect(wrapper.vm.isBookingEnabled).toBeFalsy()
 
-    selectedDates[0].start = "2023-05-10"
+    selectedDates[0].start = "2026-05-10"
     await wrapper.vm.$nextTick()
 
     expect(wrapper.vm.isBookingEnabled).toBeFalsy()
 
-    selectedDates[0].end = "2023-05-15"
+    selectedDates[0].end = "2026-05-15"
     await wrapper.vm.$nextTick()
 
     expect(wrapper.vm.isBookingEnabled).toBeTruthy()
@@ -210,40 +210,40 @@ describe("AvailabilitySearch Component", () =>
   it.concurrent("Does error handling", () => 
   {
     const wrapper = createWrapper()
-    let success = wrapper.vm.processDateSelection("2023-02-02")
+    let success = wrapper.vm.processDateSelection("2026-02-02")
     expect(success).toBe(false)
   })
 
   it.concurrent("does not allow date selections out of bounds", () => 
   {
     const wrapper = createWrapper()
-    let success = wrapper.vm.processDateSelection("2023-02-02")
+    let success = wrapper.vm.processDateSelection("2026-02-02")
     expect(success).toBe(false)
   })
 
   it.concurrent("updates the start date when selected before", () => 
   {
     const wrapper = createWrapper()
-    let success = wrapper.vm.processDateSelection("2023-05-02")
+    let success = wrapper.vm.processDateSelection("2026-05-02")
     expect(success).toBe(true)
-    expect(wrapper.vm.selectedDates[0].start).toBe("2023-05-01")
+    expect(wrapper.vm.selectedDates[0].start).toBe("2026-05-01")
   })
 
   it.concurrent("reclicking the start date clears current selection", () => 
   {
     const wrapper = createWrapper()
-    wrapper.vm.processDateSelection("2023-05-02")
-    wrapper.vm.processDateSelection("2023-05-02")
+    wrapper.vm.processDateSelection("2026-05-02")
+    wrapper.vm.processDateSelection("2026-05-02")
     expect(wrapper.vm.selectedDates[0].start).toBe("")
   })
 
   it.concurrent("clicking before the start date sets the start date", () => 
   {
     const wrapper = createWrapper()
-    wrapper.vm.processDateSelection("2023-05-03T08:00:00.000Z")
-    wrapper.vm.processDateSelection("2023-05-02T08:00:00.000Z")
-    expect(wrapper.vm.selectedDates[0].start).toBe("2023-05-02")
-    expect(wrapper.vm.selectedDates[0].end).toBe("2023-05-03")
+    wrapper.vm.processDateSelection("2026-05-03T08:00:00.000Z")
+    wrapper.vm.processDateSelection("2026-05-02T08:00:00.000Z")
+    expect(wrapper.vm.selectedDates[0].start).toBe("2026-05-02")
+    expect(wrapper.vm.selectedDates[0].end).toBe("2026-05-03")
   })
 
   it.concurrent("handles updateEndDate events", async () => 
@@ -252,8 +252,8 @@ describe("AvailabilitySearch Component", () =>
     const searchBar = wrapper.findComponent({
       name: "AvailabilitySearchBar",
     })
-    await searchBar.vm.$emit("updateEndDate", "2023-05-02T08:00:00.000Z")
-    expect(wrapper.vm.selectedDates[0].end).toBe("2023-05-02T08:00:00.000Z")
+    await searchBar.vm.$emit("updateEndDate", "2026-05-02T08:00:00.000Z")
+    expect(wrapper.vm.selectedDates[0].end).toBe("2026-05-02T08:00:00.000Z")
   })
 
   it.concurrent("handles updateStartDate events", async () => 
@@ -262,8 +262,8 @@ describe("AvailabilitySearch Component", () =>
     const searchBar = wrapper.findComponent({
       name: "AvailabilitySearchBar",
     })
-    await searchBar.vm.$emit("updateStartDate", "2023-05-03T08:00:00.000Z")
-    expect(wrapper.vm.selectedDates[0].start).toBe("2023-05-03T08:00:00.000Z")
+    await searchBar.vm.$emit("updateStartDate", "2026-05-03T08:00:00.000Z")
+    expect(wrapper.vm.selectedDates[0].start).toBe("2026-05-03T08:00:00.000Z")
   })
 
   it.concurrent("listens to vuecal events", async () => 
@@ -272,8 +272,8 @@ describe("AvailabilitySearch Component", () =>
     const searchBar = wrapper.findComponent({
       name: "VueCal",
     })
-    await searchBar.vm.$emit("cell-click", "2023-05-03T08:00:00.000Z")
-    expect(wrapper.vm.selectedDates[0].start).toBe("2023-05-03")
+    await searchBar.vm.$emit("cell-click", "2026-05-03T08:00:00.000Z")
+    expect(wrapper.vm.selectedDates[0].start).toBe("2026-05-03")
   })
 
   it.concurrent("listens to the BookButton events", async () => 
@@ -293,8 +293,8 @@ describe("AvailabilitySearch Component", () =>
     const searchBar = wrapper.findComponent({
       name: "AvailabilitySearchBar",
     })
-    await searchBar.vm.$emit("updateStartDate", "2023-05-03T08:00:00.000Z")
-    await searchBar.vm.$emit("updateEndDate", "2023-05-04T08:00:00.000Z")
+    await searchBar.vm.$emit("updateStartDate", "2026-05-03T08:00:00.000Z")
+    await searchBar.vm.$emit("updateEndDate", "2026-05-04T08:00:00.000Z")
 
     wrapper.findComponent({
       name: "BookButton", 
