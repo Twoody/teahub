@@ -5,9 +5,6 @@
 node_modules
 /dist
 
-# Ignore local cache service for assisting in size/time of host deployment
-/.firebase
-
 # Ignore jest test coverage output
 coverage
 
@@ -15,7 +12,6 @@ coverage
 .env
 .env.local
 .env.*.local
-.firebaserc
 
 # Log files
 npm-debug.log*
@@ -25,6 +21,7 @@ pnpm-debug.log*
 log
 diff
 out
+prompts/randmom.txt
 
 # Editor directories and files
 .idea
