@@ -12,6 +12,7 @@
       <Accordion
         v-for="amenitie in sortedAmenities"
         :key="amenitie.id"
+        class="nested-accordion"
       >
         <template #title>
           <div class="shown-title">
@@ -138,3 +139,11 @@ export default {
   },
 }
 </script>
+
+<style lang="less" scoped>
+.amenities-section {
+	.nested-accordion {
+		width: auto;
+	}
+}
+</style>
