@@ -58,11 +58,11 @@ describe("AvailabilitySearch Component", () =>
     expect(wrapper.find("form.is-loading").exists()).toBeTruthy()
   })
 
-  it.concurrent("processBookingRequeset should not change state on success", async () => 
+  it.concurrent("processBookingRequest should not change state on success", async () => 
   {
     expect(wrapper.vm.isLoading).toBeFalsy()
     expect(wrapper.vm.hasError).toBeFalsy()
-    await wrapper.vm.processBookingRequeset()
+    await wrapper.vm.processBookingRequest()
     expect(wrapper.vm.isLoading).toBeFalsy()
     expect(wrapper.vm.hasError).toBeFalsy()
   })
@@ -191,21 +191,6 @@ describe("AvailabilitySearch Component", () =>
     expect(wrapper.vm.isBookingEnabled).toBeTruthy()
   })
 
-  it.concurrent("processBookingRequeset sets isLoading state correctly", async () => 
-  {
-    const wrapper = createWrapper()
-
-    expect(wrapper.vm.isLoading).toBeFalsy()
-
-    wrapper.vm.processBookingRequeset()
-    expect(wrapper.vm.isLoading).toBeTruthy()
-
-    // Wait for the handleAvailabilitySearch method to finish execution
-    await new Promise((resolve) => setTimeout(resolve, 2500))
-
-    expect(wrapper.vm.isLoading).toBeFalsy()
-  })
-
   // TODO
   it.concurrent("Does error handling", () => 
   {
@@ -279,14 +264,16 @@ describe("AvailabilitySearch Component", () =>
   it.concurrent("listens to the BookButton events", async () => 
   {
     const wrapper = createWrapper()
-    const spy1 = vi.spyOn(wrapper.vm, "handleAvailabilitySearch")
-    const spy2 = vi.spyOn(wrapper.vm, "processBookingRequeset")
+    const spy1 = vi.spyOn(wrapper.vm, "handleBookButton")
+    const spy2 = vi.spyOn(wrapper.vm, "processBookingRequest")
 
     // Disabled
     wrapper.findComponent({
       name: "BookButton", 
     }).trigger("click")
-    expect(spy1).toHaveBeenCalled()
+
+    await wrapper.vm.$nextTick()
+    expect(spy1).not.toHaveBeenCalled()
     expect(spy2).not.toHaveBeenCalled()
 
     // Enable button

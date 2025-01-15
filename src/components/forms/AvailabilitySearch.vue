@@ -63,7 +63,7 @@ export default {
       hasLocalError: false,
       // maxDate is computed to the current date + 1 year
       maxDate: DateTime.now().plus({
-        years: 1, 
+        years: 1,
       }).toISODate(),
       searchQuery: "",
       selectedDates: [
@@ -85,16 +85,16 @@ export default {
     /** Is the application currently in a /processing state */
     isProcessing: Boolean,
   },
-  computed: 
+  computed:
   {
     /** @returns {boolean} - Can the booking button be clicked */
-    isBookingEnabled () 
+    isBookingEnabled ()
     {
-      if (!this.selectedDates[0].start) 
+      if (!this.selectedDates[0].start)
       {
         return false
       }
-      if (!this.selectedDates[0].end) 
+      if (!this.selectedDates[0].end)
       {
         return false
       }
@@ -102,7 +102,7 @@ export default {
     },
 
     /** @returns {string} ISO representation of "today" s.t. an earlier date is invalid */
-    minDate () 
+    minDate ()
     {
       return DateTime.fromJSDate(new Date().addDays(0)).toISODate()
     },
@@ -125,7 +125,7 @@ export default {
 
     totalPrice ()
     {
-      if (!this.isBookingEnabled) 
+      if (!this.isBookingEnabled)
       {
         return ""
       }
@@ -140,14 +140,14 @@ export default {
      */
     async handleBookButton ()
     {
-      if (!this.isBookingEnabled) 
+      if (!this.isBookingEnabled)
       {
         // Do nothing and tell user why "nothing"
         this.hasLocalError = true
       }
-      else 
+      else
       {
-        await this.processBookingRequeset()
+        await this.processBookingRequest()
       }
     },
 
@@ -161,21 +161,12 @@ export default {
       this.selectedDates[0].start = ev
     },
 
-    processBookingRequeset () 
+    processBookingRequest ()
     {
-      this.hasLocalError = false
-      try
-      {
-        this.$emit("booking-request", {
-          endDate: this.selectedDates[0].end,
-          startDate: this.selectedDates[0].start,
-        })
-
-      }
-      catch (error)
-      {
-        this.hasLocalError = true
-      }
+      this.$emit("booking-request", {
+        endDate: this.selectedDates[0].end,
+        startDate: this.selectedDates[0].start,
+      })
     },
 
     /**
@@ -196,11 +187,11 @@ export default {
       // Selected date cannot be out of bounds
       if (d < min || d > max)
       {
-        if (d < min) 
+        if (d < min)
         {
           console.error(`${this.$options.name}: min date '${min}' has illegal selection of ${d}`)
         }
-        else if (d > max) 
+        else if (d > max)
         {
           console.error(`${this.$options.name}: max date '${max}' has illegal selection of ${d}`)
         }
