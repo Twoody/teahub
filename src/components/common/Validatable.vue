@@ -4,9 +4,12 @@
     :class="{warn: error}"
   >
     <slot/>
-    <transition name="pull-up">
+    <transition
+      name="error-fade"
+      appear
+    >
       <div
-        v-if="error"
+        v-if="error && showError"
         class="error-message"
       >
         ^ {{ error }}
@@ -26,28 +29,49 @@ export default
       required: true,
       type: String,
     },
+    showError:
+    {
+      default: true,
+      required: false,
+      type: Boolean,
+    },
   },
 }
 </script>
 
-<style scoped lang="less">
+<style lang="less">
 .validatable {
-	.error-message {
-		color: #F5AF11;
-		font-weight: 900;
-		position: relative;
-		opacity: 1;
-		text-align: left;
-		top: -4px;
-	}
+  .error-message {
+    color: #F5AF11;
+    font-weight: 900;
+    position: relative;
+    text-align: left;
+    top: -4px;
+  }
+}
 
-	.pull-up-enter-active {
-		transition: opacity .5s, top .5s;
-	}
+.error-fade-enter-active,
+.error-fade-leave-active {
+  transition: opacity 1s, transform 1s;
+}
 
-	.pull-up-enter {
-		opacity: 0;
-		top: 10px;
-	}
+.error-fade-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.error-fade-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.error-fade-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.error-fade-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
 }
 </style>
