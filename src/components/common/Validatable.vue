@@ -1,7 +1,7 @@
 <template>
   <div
     class="validatable"
-    :class="{warn: error}"
+    :class="{collapsed: !error || !showError, show: error && showError, warn: error}"
   >
     <slot/>
     <transition
