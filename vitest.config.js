@@ -30,5 +30,26 @@ export default defineConfig({
     include: [
       "tests/**/*.{test,spec}.{js,jsx,ts,tsx}",
     ],
+    coverage: {
+      reporter: ['text', 'html'],
+      exclude:
+      [
+        '.eslintrc.js',
+        'babel.config.js',
+        'vite.config.js',
+        'vitest.config.js',
+        'hotel/dist/**',
+        'dist/**',
+        'tests/**',
+
+        'attic/**',
+        'src/App.vue',
+        'src/db.js',
+        'src/main.js',
+        'src/constants/**',
+        'src/store/**',
+        '**/__mocks__/**',
+      ],
+    },
   },
 })
