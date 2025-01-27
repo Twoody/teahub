@@ -755,3 +755,38 @@
   }
 }
 
+.validatable {
+  .error-message {
+    color: #F5AF11;
+    font-weight: 900;
+    position: relative;
+    text-align: left;
+    top: -4px;
+  }
+}
+
+.error-fade-enter-active,
+.error-fade-leave-active {
+  transition: opacity 1s, transform 1s;
+}
+
+.error-fade-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.error-fade-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.error-fade-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.error-fade-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
