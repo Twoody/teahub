@@ -33,6 +33,7 @@ export default
 <style scoped lang="less">
 .validatable {
 	.error-message {
+		color: #F5AF11;
 		font-weight: 900;
 		position: relative;
 		opacity: 1;
