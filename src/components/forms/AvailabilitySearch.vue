@@ -58,8 +58,6 @@ export default {
   data: function()
   {
     return {
-      cleaningFee: 100,
-      dailyRate: 85,
       hasLocalError: false,
       // maxDate is computed to the current date + 1 year
       maxDate: DateTime.now().plus({
@@ -76,6 +74,23 @@ export default {
   },
   props:
   {
+    cleaningFee:
+    {
+      default: 100,
+      required: false,
+      type: Number,
+    },
+
+    dailyRate:
+    {
+      default: 85,
+      required: false,
+      type: Number,
+    },
+
+    /** Is the submit feature available or not */
+    disabled: Boolean,
+
     /** Whether accessibility bar for date selection is available */
     hideDateBar: Boolean,
 
@@ -90,6 +105,11 @@ export default {
     /** @returns {boolean} - Can the booking button be clicked */
     isBookingEnabled ()
     {
+      // Not enabled if end user has turned it off
+      if (this.disabled)
+      {
+        return false
+      }
       if (!this.selectedDates[0].start)
       {
         return false
