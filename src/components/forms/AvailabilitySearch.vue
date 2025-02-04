@@ -27,6 +27,7 @@
           @cell-click="processDateSelection($event)"
         />
         <BookButton
+          :v-if="!hideSubmitButton"
           :disabled="!isBookingEnabled"
           :isLoading="isLoading"
           :isProcessing="isProcessing"
@@ -93,6 +94,9 @@ export default {
 
     /** Whether accessibility bar for date selection is available */
     hideDateBar: Boolean,
+
+    /** Whether submit button is visible or not */
+    hideSubmitButton: Boolean,
 
     /** Is the application currently in a processing state */
     isLoading: Boolean,
