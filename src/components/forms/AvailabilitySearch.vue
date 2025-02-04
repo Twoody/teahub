@@ -27,7 +27,7 @@
           @cell-click="processDateSelection($event)"
         />
         <BookButton
-          :v-if="!hideSubmitButton"
+          v-if="!hideSubmitButton"
           :disabled="!isBookingEnabled"
           :isLoading="isLoading"
           :isProcessing="isProcessing"
