@@ -198,8 +198,10 @@ export default {
       if (view === "year" || view === "years")
       {
         this.inMonthView = false
+        this.selectedDates[0].start = ""
+        this.selectedDates[0].end = ""
+         
       }
-      this.inMonthView = true
     },
 
     processBookingRequest ()
@@ -218,6 +220,11 @@ export default {
     {
       if (this.isLoading || this.isProcessing || !this.inMonthView)
       {
+        if (!this.inMonthView)
+        {
+          // Ignore first selection of not-month-view to month-view
+          this.inMonthView = true
+        }
         return false
       }
       let d = DateTime.fromJSDate(new Date(selected))
