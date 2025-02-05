@@ -19,12 +19,14 @@
           active-view="month"
           class="vue-cal-container vuecal--rounded-theme vuecal--date-picker"
           :disable-views="['day', 'week']"
+          click-to-navigate
           :events="selectedDates"
           hide-view-selector
           :min-date="minDate"
           :time="false"
           xsmall
           @cell-click="processDateSelection($event)"
+          @view-change="handleViewChanges($event)"
         />
         <BookButton
           v-if="!hideSubmitButton"
@@ -60,6 +62,7 @@ export default {
   {
     return {
       hasLocalError: false,
+      inMonthView: true,
       // maxDate is computed to the current date + 1 year
       maxDate: DateTime.now().plus({
         years: 1,
@@ -185,6 +188,20 @@ export default {
       this.selectedDates[0].start = ev
     },
 
+    /**
+     * @param selected
+     * @returns {void} Fix around the selectedDate being emitted on vue-cal view changes
+     */
+    handleViewChanges (selected)
+    {
+      const view = selected.view
+      if (view === "year" || view === "years")
+      {
+        this.inMonthView = false
+      }
+      this.inMonthView = true
+    },
+
     processBookingRequest ()
     {
       this.$emit("booking-request", {
@@ -199,7 +216,7 @@ export default {
      */
     processDateSelection (selected)
     {
-      if (this.isLoading || this.isProcessing)
+      if (this.isLoading || this.isProcessing || !this.inMonthView)
       {
         return false
       }
